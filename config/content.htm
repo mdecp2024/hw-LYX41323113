@@ -73,7 +73,160 @@
 </div>
 </div>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/LKECz_UpLL0" width="560"></iframe></p>
-<h1>HW 2</h1>
+<h3>w13_hw</h3>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<p>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 2  # 設定邊框線寬
+
+# 計算第一個圓的圓心與半徑
+center_x1 = 40 + 230 / 2  # 第一個矩形的X中心
+center_y1 = 40 + 230 / 2  # 第一個矩形的Y中心
+radius1 = (230 * (2 ** 0.5)) / 2  # 半徑為對角線的一半
+
+# 計算第二個圓的圓心與半徑
+center_x2 = 140 + 220 / 2  # 第二個矩形的X中心
+center_y2 = 140 + 220 / 2  # 第二個矩形的Y中心
+radius2 = (220 * (2 ** 0.5)) / 2  # 半徑為對角線的一半
+
+# 繪製兩個圓的邊框
+ctx.strokeStyle = 'black'  # 設定圓的邊框顏色
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 第一個圓
+ctx.stroke()
+
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 第二個圓
+ctx.stroke()
+
+# 繪製兩個矩形的邊框，且不填充顏色
+ctx.strokeStyle = 'red'   # 設定邊框顏色為紅色
+ctx.beginPath()
+ctx.rect(40, 40, 230, 230)  # 第一個矩形的位置和大小
+ctx.stroke()  # 繪製邊框
+
+ctx.strokeStyle = 'green'  # 設定邊框顏色為綠色
+ctx.beginPath()
+ctx.rect(140, 140, 220, 220)  # 第二個矩形的位置和大小
+ctx.stroke()  # 繪製邊框
+
+# 填充圓形的區域，排除與正方形的重疊部分
+ctx.globalCompositeOperation = 'source-over'  # 設定為填充模式
+ctx.fillStyle = 'lightblue'  # 設定圓形內部填充顏色為淺藍色
+
+# 填充第一個圓形
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)
+ctx.fill()
+
+# 填充第二個圓形
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)
+ctx.fill()
+
+# 刪除圓形與正方形重疊的區域
+ctx.globalCompositeOperation = 'destination-out'  # 設定為刪除重疊區域模式
+
+# 刪除第一個圓與正方形重疊的區域
+ctx.beginPath()
+ctx.rect(40, 40, 230, 230)  # 第一個矩形區域
+ctx.fill()
+
+# 刪除第二個圓與正方形重疊的區域
+ctx.beginPath()
+ctx.rect(140, 140, 220, 220)  # 第二個矩形區域
+ctx.fill()
+
+# 填充重疊區域的顏色（位於兩個正方形重疊的區域）
+ctx.globalCompositeOperation = 'source-over'  # 恢復填充模式
+ctx.fillStyle = 'orange'  # 設定重疊區域填充顏色為橙色
+
+# 重疊區域填充
+ctx.beginPath()
+ctx.rect(140, 140, 130, 130)  # 重疊區域的範圍 (兩個矩形重疊部分)
+ctx.fill()
+
+# 重新繪製斜線，確保它在最上層
+ctx.strokeStyle = 'blue'  # 設定斜線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(40, 40)
+ctx.lineTo(270, 270)  # 斜線
+ctx.stroke()
+
+# 最後繪製所有的邊框，確保線條不被遮蓋
+ctx.strokeStyle = 'red'   # 第一個矩形的邊框顏色
+ctx.beginPath()
+ctx.rect(40, 40, 230, 230)  # 第一個矩形的位置和大小
+ctx.stroke()
+
+ctx.strokeStyle = 'green'  # 第二個矩形的邊框顏色
+ctx.beginPath()
+ctx.rect(140, 140, 220, 220)  # 第二個矩形的位置和大小
+ctx.stroke()
+
+ctx.strokeStyle = 'black'  # 圓形邊框顏色
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 第一個圓
+ctx.stroke()
+
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 第二個圓
+ctx.stroke()
+</script>
+</p><h3>w13_hw</h3>
+<div id="canvas-container"><!-- 這裡將顯示你的 SVG 畫布 --></div>
+<script type="text/python">
+    from browser import document, svg
+
+    # 建立畫布
+    canvas = svg.svg(width=400, height=400)
+    document["canvas-container"] <= canvas  # 將 SVG 畫布插入到指定的 div 中
+
+    # 定義方形邊長
+    side_length = 100
+
+    # 第一個方形的左上角 (起始點)
+    x1, y1 = 50, 50
+
+    # 第二個方形相對位置 (平移)
+    offset = 50
+
+    # 畫第一個方形
+    canvas <= svg.rect(x=x1, y=y1, width=side_length, height=side_length, 
+                       fill="none", stroke="red")
+
+    # 畫第二個方形
+    canvas <= svg.rect(x=x1+offset, y=y1+offset, width=side_length, height=side_length, 
+                       fill="none", stroke="red")
+
+    # 畫藍色對角線
+    canvas <= svg.line(x1=x1, y1=y1+side_length, 
+                       x2=x1+side_length, y2=y1, 
+                       stroke="blue")
+    
+</script><h1>HW 2</h1>
 <p>.be/mjY7mJTDjOw?si=ynnyz_Qs</p>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
@@ -86,7 +239,7 @@
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h1>HW 3</h1>
-<h4>主題: Python 的數字、演算法與迴圈 (20%)</h4>
+<h4>主題13: Python 的數字、演算法與迴圈 (20%)</h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 4 and Part 5</p>
 <p>完成上述流程整理後, 請將 HW3 自評分數輸入 cp2024 自評表單中.</p>
 <h2>HW 3 Exam</h2>
