@@ -73,171 +73,123 @@
 </div>
 </div>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/LKECz_UpLL0" width="560"></iframe></p>
-<br/><br/><br/><br/>w13_hw<br/><a href="https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f" title="解"></a>
-<h4></h4>
-<p><a href="https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f" title="解">https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f</a></p>
-<p></p>
-<p>心得:利用chat gpt我才能把要的圖形做出來不然我真的自己做不出來還有好友的支援非常感謝</p>
-<p></p>
-<p>
-<script type="text/python3">
-from browser import html
-from browser import document as doc
-
-# 利用 html 建立 canvas 超文件物件
-canvas = html.CANVAS(width=400, height=400)
-brython_div = doc["brython_div1"]
-brython_div <= canvas
-
-ctx = canvas.getContext("2d")
-ctx.lineWidth = 1  # 設定邊框線寬
-
-# 繪製對角線，顏色設定為藍色
-ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
-ctx.beginPath()
-ctx.moveTo(20, 20)  # 調整起點位置
-ctx.lineTo(100, 100)  # 第一條對角線，縮小大小
-ctx.stroke()
-
-# 繪製外接圓，圓心位於第一個矩形的中央
-center_x1 = 20 + 80 / 2  # 第一個矩形的X中心
-center_y1 = 20 + 80 / 2  # 第一個矩形的Y中心
-
-# 半徑為第一個矩形對角線的一半
-radius1 = (80 * (2 ** 0.5)) / 2
-
-# 繪製外接圓
-ctx.strokeStyle = 'green'  # 設定圓的顏色為綠色
-ctx.beginPath()
-ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 圓心 (center_x1, center_y1) 和半徑
-ctx.stroke()
-
-# 繪製外接圓，圓心位於第二個矩形的中央
-center_x2 = 60 + 80 / 2  # 第二個矩形的X中心
-center_y2 = 60 + 80 / 2  # 第二個矩形的Y中心
-
-# 半徑為第二個矩形對角線的一半
-radius2 = (80 * (2 ** 0.5)) / 2
-
-# 繪製外接圓
-ctx.strokeStyle = 'purple'  # 設定圓的顏色為紫色
-ctx.beginPath()
-ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 圓心 (center_x2, center_y2) 和半徑
-ctx.stroke()
-
-# 繪製第一個矩形，並填充顏色
-ctx.fillStyle = 'yellow'  # 設定填充顏色為黃色
-ctx.strokeStyle = 'red'   # 設定邊框顏色為紅色
-
-ctx.rect(20, 20, 80, 80)  # 設定矩形的位置和大小，縮小為 80x80
-ctx.stroke()  # 繪製邊框
-ctx.beginPath()
-
-# 繪製第二個矩形
-ctx.strokeStyle = 'green'    # 設定邊框顏色為綠色
-ctx.beginPath()
-ctx.rect(60, 60, 80, 80)  # 設定第二個矩形的位置和大小，縮小為 60x60
-ctx.stroke()  # 繪製邊框
-
-# 填充圓形的區域，排除與正方形的重疊部分
-ctx.globalCompositeOperation = 'source-over'  # 設定為填充模式
-ctx.fillStyle = 'lightblue'  # 設定圓形內部填充顏色為淺藍色
-
-# 填充第一個圓形
-ctx.beginPath()
-ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)
-ctx.fill()
-
-# 填充第二個圓形
-ctx.beginPath()
-ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)
-ctx.fill()
-
-# 刪除圓形與正方形重疊的區域
-ctx.globalCompositeOperation = 'destination-out'  # 設定為刪除重疊區域模式
-
-# 刪除第一個圓與正方形重疊的區域
-ctx.beginPath()
-ctx.rect(20, 20, 80, 80)  # 第一個矩形區域
-ctx.fill()
-
-# 刪除第二個圓與正方形重疊的區域
-ctx.beginPath()
-ctx.rect(60, 60, 80, 80)  # 第二個矩形區域
-ctx.fill()
-
-# 填充重疊區域的顏色（位於兩個正方形重疊的區域）
-ctx.globalCompositeOperation = 'source-over'  # 恢復填充模式
-ctx.fillStyle = 'orange'  # 設定重疊區域填充顏色為橙色
-
-# 填充第一個矩形的內部
-ctx.globalCompositeOperation = 'source-over'  # 設定為填充模式
-ctx.fillStyle = 'lightyellow'  # 設定填充顏色
-ctx.beginPath()
-ctx.rect(20, 20, 80, 80)  # 第一個矩形區域
-ctx.fill()
-
-# 填充第二個矩形的內部
-ctx.fillStyle = 'lightgreen'  # 設定填充顏色
-ctx.beginPath()
-ctx.rect(60, 60, 80, 80)  # 第二個矩形區域
-ctx.fill()
-
-# 填充第一個圓形和矩形之間的空白區域
-ctx.fillStyle = 'lightblue'  # 設定填充顏色
-ctx.beginPath()
-ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)
-ctx.rect(20, 20, 80, 80)  # 使用複合模式
-ctx.globalCompositeOperation = 'destination-over'  # 填充背景模式
-ctx.fill()
-
-# 填充第二個圓形和矩形之間的空白區域
-ctx.fillStyle = 'lightpurple'  # 設定填充顏色
-ctx.beginPath()
-ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)
-ctx.rect(60, 60, 80, 80)  # 使用複合模式
-ctx.globalCompositeOperation = 'destination-over'
-ctx.fill()
-
-# 重置繪圖操作模式
-ctx.globalCompositeOperation = 'source-over'
-
-
-# 重疊區域填充
-ctx.beginPath()
-ctx.rect(60, 60, 40, 40)  # 重疊區域的範圍 (兩個矩形重疊部分)
-ctx.fill()
-
-# 重新繪製斜線，確保它在最上層
-ctx.strokeStyle = 'blue'  # 設定斜線顏色為藍色
-ctx.beginPath()
-ctx.moveTo(20, 20)
-ctx.lineTo(140, 140)  # 斜線
-ctx.stroke()
-
-# 最後繪製所有的邊框，確保線條不被遮蓋
-ctx.strokeStyle = 'red'   # 第一個矩形的邊框顏色
-ctx.beginPath()
-ctx.rect(20, 20, 80, 80)  # 第一個矩形的位置和大小
-ctx.stroke()
-
-ctx.strokeStyle = 'green'  # 第二個矩形的邊框顏色
-ctx.beginPath()
-ctx.rect(60, 60, 80, 80)  # 第二個矩形的位置和大小
-ctx.stroke()
-
-ctx.strokeStyle = 'black'  # 圓形邊框顏色
-ctx.beginPath()
-ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 第一個圓
-ctx.stroke()
-
-ctx.beginPath()
-ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 第二個圓
-ctx.stroke()
-</script>
-</p><p>w13_hw</p>
-<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js" type="text/javascript"></script>
-<h3>w13_hw</h3>
+<p><br/><br/><br/><br/></p>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js" type="text/javascript"></script><h3>w12_hw</h3>
+<ol>
+<li><span>請各組組員分別利用 </span><span>Brython 以及 Jupyter lab</span><span> 環境, 執行</span><a href="http://229.cycu.org/python_2025_lite.7z">可攜程式</a><span> notebook 目錄中的 </span><span>01_string_input_print.ipynb 至 10_for_search.ipynb</span><span> 筆記本程式, 完成後請將能在 Brython 執行的程式碼存入個人 </span><span>Gist</span><span> 後, 將各程式執行連結放入 w12_hw 網頁上. 最後請說明各範例中所使用的程式語法以及執行心得.</span></li>
+</ol>
+<p>以下是 01 到 10 號代碼的簡短說明和心得：</p>
+<h4>01 - 打印貓咪圖案：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/01">程式碼</a></p>
+<pre><code class="language-python">print(" /\\_/\\   ")
+print(" &gt;^.^&lt;   ")
+print("  / \\    ")
+print(" (___)___")
+</code></pre>
+<p><strong>說明：</strong> 打印一個簡單的 ASCII 藝術貓咪圖案。<br/> <strong>心得：</strong> 學習如何用字符打印出簡單的圖形和符號。</p>
+<hr/>
+<h4>02 - 用戶輸入並輸出：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/02">程式碼</a></p>
+<pre><code class="language-python">name = input("What's your name?")
+favorite_food = input("What is your favorite food?")
+print("Hi! My name is " + name)
+print("My favorite food is " + favorite_food)
+print(name + "'s favorite food is " + favorite_food)
+</code></pre>
+<p><strong>說明：</strong> 提示用戶輸入名字和最喜歡的食物，然後輸出。<br/> <strong>心得：</strong> 學會了如何獲取用戶輸入並將其打印輸出。</p>
+<hr/>
+<h4>03 - 查找書籍：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/03">程式碼</a></p>
+<pre><code class="language-python">programming_books = ["Learn python", "Python for all", "Intro to python"]
+wanted_book = input("你好！你想買哪本書？ ")
+if wanted_book in programming_books:
+    print("是的，我們有這本書！")
+else:
+    print("抱歉，我們沒有這本書")
+</code></pre>
+<p><strong>說明：</strong> 判斷用戶輸入的書籍是否在可供購買的列表中。<br/> <strong>心得：</strong> 了解如何使用 <code inline="">if</code> 語句和 <code inline="">in</code> 操作符進行條件判斷。</p>
+<hr/>
+<h4>04 - 購物清單管理：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/04">程式碼</a></p>
+<pre><code class="language-python">shopping_list = ["carrots", "chocolate", "olives"]
+new_item = input("What else do I have to buy?")
+if new_item in shopping_list:
+    print(new_item + " is/are already in the shopping list")
+else:
+    shopping_list.append(new_item)
+    item_to_remove = input("What do I have to remove?")
+    if item_to_remove in shopping_list:
+        shopping_list.remove(item_to_remove)
+</code></pre>
+<p><strong>說明：</strong> 管理購物清單，添加和刪除物品。<br/> <strong>心得：</strong> 學會了如何操作列表進行添加、刪除、檢查元素。</p>
+<hr/>
+<h4>05 - 修改菜單：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/05">程式碼</a></p>
+<pre><code class="language-python">todays_menu = ["burger", "salad", "coke"]
+side_dish_index = todays_menu.index("salad")
+todays_menu.pop(side_dish_index)
+todays_menu.insert(side_dish_index, "fries")
+</code></pre>
+<p><strong>說明：</strong> 修改菜單，替換掉 "salad" 為 "fries"。<br/> <strong>心得：</strong> 學會了如何修改列表中的元素，通過索引定位並進行替換。</p>
+<hr/>
+<h4>06 - 列表切片與索引：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/06">程式碼</a></p>
+<pre><code class="language-python">cities = ["San Diego", "Prague", "Cape Town", "Tokyo", "Melbourne"]
+print(cities[1])
+print(cities[1:4])
+print(cities[::2])
+print(cities[::-1])
+</code></pre>
+<p><strong>說明：</strong> 展示如何使用索引和切片操作訪問列表中的元素。<br/> <strong>心得：</strong> 熟悉了 Python 列表的切片與反轉操作。</p>
+<hr/>
+<h4>07 - 修改列表元素：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/07">程式碼</a></p>
+<pre><code class="language-python">senses = ["eyes", "nose", "ears", "tongue", "skin"]
+senses[1] = "smell"
+senses[3:5] = ["taste", "touch"]
+planets = ["Mercury", "Mars", "Earth", "Neptune"]
+planets = planets + ["Jupiter"]
+planets = planets[0:2] + ["Venus"] + planets[2:5]
+</code></pre>
+<p><strong>說明：</strong> 修改和合併列表元素，演示了替換和拼接操作。<br/> <strong>心得：</strong> 學會了列表的元素修改和拼接方法。</p>
+<hr/>
+<h4>08 - 朋友和菜肴：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/08">程式碼</a></p>
+<pre><code class="language-python">friends = ["Geetha", "Luca", "Daisy", "Juhan"]
+dishes = ["sushi", "burgers", "tacos", "pizza"]
+for index in range(0, 4):
+    print("My friend " + friends[index] + "'s favorite dish is " + dishes[index])
+</code></pre>
+<p><strong>說明：</strong> 輸出每個朋友及其喜歡的菜肴。<br/> <strong>心得：</strong> 理解了如何通過 <code inline="">for</code> 循環遍歷多個列表中的元素並輸出。</p>
+<hr/>
+<h4>09 - 動物循環：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/09">程式碼</a></p>
+<pre><code class="language-python">animals = ["giraffe", "penguin", "dolphin"]
+wanted_to_see = "penguin"
+for i in range(0, len(animals)):
+    print("-- Beginning of loop --")
+    print("The element in position " + str(i) + " is " + animals[i])
+for i in range(0, len(animals)):
+    if animals[i] == wanted_to_see:
+        print("I saw a " + animals[i] + " and I really wanted to see it!")
+    else:
+        print("I saw a " + animals[i])
+</code></pre>
+<p><strong>說明：</strong> 遍歷動物列表，檢查是否是你想要看到的動物。<br/> <strong>心得：</strong> 學會了如何在循環中加入條件判斷，並做出相應輸出。</p>
+<hr/>
+<h4>10 - 配件列表：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/10">程式碼</a></p>
+<pre><code class="language-python">accessories = ["belt", "hat", "gloves", "sunglasses", "ring"]
+for i in range(len(accessories)):
+    print("The element " + accessories[i] + " is in position " + str(i))
+for i in range(len(accessories)):
+    if len(accessories[i]) == 6:
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
+</code></pre>
+<p><strong>說明：</strong> 根據字符串的長度檢查配件列表中的元素。<br/> <strong>心得：</strong> 學會了如何使用條件判斷和字符串長度方法處理列表中的元素。</p>
+<hr/>
+<h4>總結：</h4>
+<p>這些程式幫助我掌握了 Python 中常用的列表操作、條件判斷、循環結構等基本知識。每個程式展示了如何有效地操作和管理數據，並輸出結果。通過這些練習，可以加深對 Python 基礎語法和數據結構的理解。</p><h3>w13_hw</h3>
 <!-- 導入 brython 程式庫 -->
 <p>
 <script src="/static/brython.js"></script>
