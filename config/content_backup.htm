@@ -73,23 +73,12 @@
 </div>
 </div>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/LKECz_UpLL0" width="560"></iframe></p>
-<h3>w13_hw</h3>
-<p><br/><a href="https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f" title="解">https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f</a></p>
+<br/><br/><br/><br/>w13_hw<br/><a href="https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f" title="解"></a>
+<h4></h4>
+<p><a href="https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f" title="解">https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f</a></p>
 <p></p>
-<!-- 導入 brython 程式庫 -->
-<p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-</p>
-<!-- 啟動 Brython -->
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<div id="brython_div1"><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5eca62565d509668d731720f1994e127/raw/c885949528f12bfa567ebbd2474d13ef4b5c1e46/if_append_brython.py" title="解"></a></div>
+<p>心得:利用chat gpt我才能把要的圖形做出來不然我真的自己做不出來還有好友的支援非常感謝</p>
+<p></p>
 <p>
 <script type="text/python3">
 from browser import html
@@ -246,6 +235,270 @@ ctx.beginPath()
 ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 第二個圓
 ctx.stroke()
 </script>
+</p><p>w13_hw</p>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js" type="text/javascript"></script>
+<h3>w13_hw</h3>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1">心得:這如果沒有chat gpt 和朋友的幫助我畫不出來</div>
+<div><a href="https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f" title="解">https://gist.github.com/LYX41323113/90d5fdc12ba654118d97fd7c32a4598f</a></div>
+<p>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 1  # 設定邊框線寬
+
+# 繪製對角線，顏色設定為藍色
+ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(20, 20)  # 調整起點位置
+ctx.lineTo(100, 100)  # 第一條對角線，縮小大小
+ctx.stroke()
+
+# 繪製外接圓，圓心位於第一個矩形的中央
+center_x1 = 20 + 80 / 2  # 第一個矩形的X中心
+center_y1 = 20 + 80 / 2  # 第一個矩形的Y中心
+
+# 半徑為第一個矩形對角線的一半
+radius1 = (80 * (2 ** 0.5)) / 2
+
+# 繪製外接圓
+ctx.strokeStyle = 'green'  # 設定圓的顏色為綠色
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 圓心 (center_x1, center_y1) 和半徑
+ctx.stroke()
+
+# 繪製外接圓，圓心位於第二個矩形的中央
+center_x2 = 60 + 80 / 2  # 第二個矩形的X中心
+center_y2 = 60 + 80 / 2  # 第二個矩形的Y中心
+
+# 半徑為第二個矩形對角線的一半
+radius2 = (80 * (2 ** 0.5)) / 2
+
+# 繪製外接圓
+ctx.strokeStyle = 'purple'  # 設定圓的顏色為紫色
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 圓心 (center_x2, center_y2) 和半徑
+ctx.stroke()
+
+# 繪製第一個矩形，並填充顏色
+ctx.fillStyle = 'yellow'  # 設定填充顏色為黃色
+ctx.strokeStyle = 'red'   # 設定邊框顏色為紅色
+
+ctx.rect(20, 20, 80, 80)  # 設定矩形的位置和大小，縮小為 80x80
+ctx.stroke()  # 繪製邊框
+ctx.beginPath()
+
+# 繪製第二個矩形
+ctx.strokeStyle = 'green'    # 設定邊框顏色為綠色
+ctx.beginPath()
+ctx.rect(60, 60, 80, 80)  # 設定第二個矩形的位置和大小，縮小為 60x60
+ctx.stroke()  # 繪製邊框
+
+# 填充圓形的區域，排除與正方形的重疊部分
+ctx.globalCompositeOperation = 'source-over'  # 設定為填充模式
+ctx.fillStyle = 'lightblue'  # 設定圓形內部填充顏色為淺藍色
+
+# 填充第一個圓形
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)
+ctx.fill()
+
+# 填充第二個圓形
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)
+ctx.fill()
+
+# 刪除圓形與正方形重疊的區域
+ctx.globalCompositeOperation = 'destination-out'  # 設定為刪除重疊區域模式
+
+# 刪除第一個圓與正方形重疊的區域
+ctx.beginPath()
+ctx.rect(20, 20, 80, 80)  # 第一個矩形區域
+ctx.fill()
+
+# 刪除第二個圓與正方形重疊的區域
+ctx.beginPath()
+ctx.rect(60, 60, 80, 80)  # 第二個矩形區域
+ctx.fill()
+
+# 填充重疊區域的顏色（位於兩個正方形重疊的區域）
+ctx.globalCompositeOperation = 'source-over'  # 恢復填充模式
+ctx.fillStyle = 'orange'  # 設定重疊區域填充顏色為橙色
+
+# 填充第一個矩形的內部
+ctx.globalCompositeOperation = 'source-over'  # 設定為填充模式
+ctx.fillStyle = 'lightyellow'  # 設定填充顏色
+ctx.beginPath()
+ctx.rect(20, 20, 80, 80)  # 第一個矩形區域
+ctx.fill()
+
+# 填充第二個矩形的內部
+ctx.fillStyle = 'lightgreen'  # 設定填充顏色
+ctx.beginPath()
+ctx.rect(60, 60, 80, 80)  # 第二個矩形區域
+ctx.fill()
+
+# 填充第一個圓形和矩形之間的空白區域
+ctx.fillStyle = 'lightblue'  # 設定填充顏色
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)
+ctx.rect(20, 20, 80, 80)  # 使用複合模式
+ctx.globalCompositeOperation = 'destination-over'  # 填充背景模式
+ctx.fill()
+
+# 填充第二個圓形和矩形之間的空白區域
+ctx.fillStyle = 'lightpurple'  # 設定填充顏色
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)
+ctx.rect(60, 60, 80, 80)  # 使用複合模式
+ctx.globalCompositeOperation = 'destination-over'
+ctx.fill()
+
+# 重置繪圖操作模式
+ctx.globalCompositeOperation = 'source-over'
+
+
+# 重疊區域填充
+ctx.beginPath()
+ctx.rect(60, 60, 40, 40)  # 重疊區域的範圍 (兩個矩形重疊部分)
+ctx.fill()
+
+# 重新繪製斜線，確保它在最上層
+ctx.strokeStyle = 'blue'  # 設定斜線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(20, 20)
+ctx.lineTo(140, 140)  # 斜線
+ctx.stroke()
+
+# 最後繪製所有的邊框，確保線條不被遮蓋
+ctx.strokeStyle = 'red'   # 第一個矩形的邊框顏色
+ctx.beginPath()
+ctx.rect(20, 20, 80, 80)  # 第一個矩形的位置和大小
+ctx.stroke()
+
+ctx.strokeStyle = 'green'  # 第二個矩形的邊框顏色
+ctx.beginPath()
+ctx.rect(60, 60, 80, 80)  # 第二個矩形的位置和大小
+ctx.stroke()
+
+ctx.strokeStyle = 'black'  # 圓形邊框顏色
+ctx.beginPath()
+ctx.arc(center_x1, center_y1, radius1, 0, 2 * 3.14159)  # 第一個圓
+ctx.stroke()
+
+ctx.beginPath()
+ctx.arc(center_x2, center_y2, radius2, 0, 2 * 3.14159)  # 第二個圓
+ctx.stroke()
+</script>
+</p><h3>w14_ex</h3>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+    brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<!-- Python 程式碼 -->
+<p>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+import random
+import math
+
+def initialize_canvas(canvas_width=400, canvas_height=400, id="brython_div1"):
+    canvas = html.CANVAS(width=canvas_width, height=canvas_height)
+    brython_div = doc[id]
+    brython_div <= canvas
+    ctx = canvas.getContext("2d")
+    return canvas, ctx
+
+def random_color_generator():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    return f"rgb({r}, {g}, {b})"
+
+def is_point_in_circle(px, py, cx, cy, r):
+    return (px - cx) ** 2 + (py - cy) ** 2 <= r ** 2
+
+def draw_circles(x1, y1, r1, x2, y2, r2, x3, y3, r3):
+    canvas, ctx = initialize_canvas(400, 400)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    color_dict = {}
+
+    for py in range(0, canvas.height):
+        for px in range(0, canvas.width):
+            in_circle1 = is_point_in_circle(px, py, x1, y1, r1)
+            in_circle2 = is_point_in_circle(px, py, x2, y2, r2)
+            in_circle3 = is_point_in_circle(px, py, x3, y3, r3)
+
+            if in_circle1 and in_circle2 and in_circle3:
+                if "intersection_all" not in color_dict:
+                    color_dict["intersection_all"] = random_color_generator()
+                current_color = color_dict["intersection_all"]
+            elif in_circle1 and in_circle2:
+                if "intersection_1_2" not in color_dict:
+                    color_dict["intersection_1_2"] = random_color_generator()
+                current_color = color_dict["intersection_1_2"]
+            elif in_circle1 and in_circle3:
+                if "intersection_1_3" not in color_dict:
+                    color_dict["intersection_1_3"] = random_color_generator()
+                current_color = color_dict["intersection_1_3"]
+            elif in_circle2 and in_circle3:
+                if "intersection_2_3" not in color_dict:
+                    color_dict["intersection_2_3"] = random_color_generator()
+                current_color = color_dict["intersection_2_3"]
+            elif in_circle1:
+                if "circle1" not in color_dict:
+                    color_dict["circle1"] = random_color_generator()
+                current_color = color_dict["circle1"]
+            elif in_circle2:
+                if "circle2" not in color_dict:
+                    color_dict["circle2"] = random_color_generator()
+                current_color = color_dict["circle2"]
+            elif in_circle3:
+                if "circle3" not in color_dict:
+                    color_dict["circle3"] = random_color_generator()
+                current_color = color_dict["circle3"]
+            else:
+                current_color = "white"
+             
+            ctx.fillStyle = current_color
+            ctx.fillRect(px, py, 1, 1)
+
+x1, y1, r1 = 150, 200, 100
+x2, y2, r2 = 250, 200, 100
+x3, y3, r3 = 200, 150, 100
+
+draw_circles(x1, y1, r1, x2, y2, r2, x3, y3, r3)
+</script>
 </p><h1>HW 2</h1>
 <p>.be/mjY7mJTDjOw?si=ynnyz_Qs</p>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
@@ -254,8 +507,7 @@ ctx.stroke()
 <p>延續 HW 1 網頁資料整理與程式練習方法, 整理下列內容 (20%):</p>
 <p>PART 2: Introduction to lists and if/else statements</p>
 <p>PART 3: Introduction to the for loop</p>
-<p>完成上述流程整理後, 請將 HW2 自評分數輸入 cp2024 自評表單中.</p>
-<h2>HW 2 Exam</h2>
+<p>完成上述流程整理後, 請將 HW2 自評分數輸入 cp2024 自評表單中.</p><h2>HW 2 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h1>HW 3</h1>
