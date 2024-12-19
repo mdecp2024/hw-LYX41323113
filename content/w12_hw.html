@@ -2,7 +2,7 @@
         <head>
         <title>cp_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,16 +141,122 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 3 Exam << <a href='HW 3 Exam.html'>Previous</a> <a href='HW 4 Exam.html'>Next</a> >> HW 4 Exam<br /><h1>HW 4</h1>
-<h4>主題: 利用 Python 控制機電模擬系統 (20%)</h4>
-<p style="padding-left: 30px;">利用 <a href="https://solvespace.com/">https://solvespace.com/</a> 建立機械系統零組件</p>
-<p style="padding-left: 30px;">利用 <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a> 建立機電模擬系統</p>
-<p style="padding-left: 30px;">利用 <a href="https://manual.coppeliarobotics.com/en/zmqRemoteApiOverview.htm">Python</a> 跨網路控制瀏覽器上的機電模擬系統</p>
-<p style="padding-left: 30px;">範例:</p>
-<p style="padding-left: 60px;"><a href="./../downloads/cd2023_pj3ag4_zmq_football_4.7.7z">cd2023_pj3ag4_zmq_football_4.7.7z</a></p>
-<p style="padding-left: 60px;"><a href="https://localhost:9446/downloads/cd2024_2b_g6_steel_ball_platform_nxopen_copsim.7z">cd2024_2b_g6_steel_ball_platform_nxopen_copsim.7z</a></p>
-<p>完成上述流程整理後, 請將 HW4 自評分數輸入 cp2024 自評表單中.</p>
-<br />HW 3 Exam << <a href='HW 3 Exam.html'>Previous</a> <a href='HW 4 Exam.html'>Next</a> >> HW 4 Exam</div>
+    <div id="tipue_search_content">w12 << <a href='w12.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw<br /><h1>w12_hw</h1>
+<ol>
+<li><span>請各組組員分別利用 </span><span>Brython 以及 Jupyter lab</span><span> 環境, 執行</span><a href="http://229.cycu.org/python_2025_lite.7z">可攜程式</a><span> notebook 目錄中的 </span><span>01_string_input_print.ipynb 至 10_for_search.ipynb</span><span> 筆記本程式, 完成後請將能在 Brython 執行的程式碼存入個人 </span><span>Gist</span><span> 後, 將各程式執行連結放入 w12_hw 網頁上. 最後請說明各範例中所使用的程式語法以及執行心得.</span></li>
+</ol>
+<p>以下是 01 到 10 號代碼的簡短說明和心得：</p>
+<h4>01 - 打印貓咪圖案：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/01">程式碼</a></p>
+<pre><code class="language-python">print(" /\\_/\\   ")
+print(" &gt;^.^&lt;   ")
+print("  / \\    ")
+print(" (___)___")
+</code></pre>
+<p><strong>說明：</strong> 打印一個簡單的 ASCII 藝術貓咪圖案。<br/> <strong>心得：</strong> 學習如何用字符打印出簡單的圖形和符號。</p>
+<hr/>
+<h4>02 - 用戶輸入並輸出：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/02">程式碼</a></p>
+<pre><code class="language-python">name = input("What's your name?")
+favorite_food = input("What is your favorite food?")
+print("Hi! My name is " + name)
+print("My favorite food is " + favorite_food)
+print(name + "'s favorite food is " + favorite_food)
+</code></pre>
+<p><strong>說明：</strong> 提示用戶輸入名字和最喜歡的食物，然後輸出。<br/> <strong>心得：</strong> 學會了如何獲取用戶輸入並將其打印輸出。</p>
+<hr/>
+<h4>03 - 查找書籍：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/03">程式碼</a></p>
+<pre><code class="language-python">programming_books = ["Learn python", "Python for all", "Intro to python"]
+wanted_book = input("你好！你想買哪本書？ ")
+if wanted_book in programming_books:
+    print("是的，我們有這本書！")
+else:
+    print("抱歉，我們沒有這本書")
+</code></pre>
+<p><strong>說明：</strong> 判斷用戶輸入的書籍是否在可供購買的列表中。<br/> <strong>心得：</strong> 了解如何使用 <code inline="">if</code> 語句和 <code inline="">in</code> 操作符進行條件判斷。</p>
+<hr/>
+<h4>04 - 購物清單管理：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/04">程式碼</a></p>
+<pre><code class="language-python">shopping_list = ["carrots", "chocolate", "olives"]
+new_item = input("What else do I have to buy?")
+if new_item in shopping_list:
+    print(new_item + " is/are already in the shopping list")
+else:
+    shopping_list.append(new_item)
+    item_to_remove = input("What do I have to remove?")
+    if item_to_remove in shopping_list:
+        shopping_list.remove(item_to_remove)
+</code></pre>
+<p><strong>說明：</strong> 管理購物清單，添加和刪除物品。<br/> <strong>心得：</strong> 學會了如何操作列表進行添加、刪除、檢查元素。</p>
+<hr/>
+<h4>05 - 修改菜單：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/05">程式碼</a></p>
+<pre><code class="language-python">todays_menu = ["burger", "salad", "coke"]
+side_dish_index = todays_menu.index("salad")
+todays_menu.pop(side_dish_index)
+todays_menu.insert(side_dish_index, "fries")
+</code></pre>
+<p><strong>說明：</strong> 修改菜單，替換掉 "salad" 為 "fries"。<br/> <strong>心得：</strong> 學會了如何修改列表中的元素，通過索引定位並進行替換。</p>
+<hr/>
+<h4>06 - 列表切片與索引：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/06">程式碼</a></p>
+<pre><code class="language-python">cities = ["San Diego", "Prague", "Cape Town", "Tokyo", "Melbourne"]
+print(cities[1])
+print(cities[1:4])
+print(cities[::2])
+print(cities[::-1])
+</code></pre>
+<p><strong>說明：</strong> 展示如何使用索引和切片操作訪問列表中的元素。<br/> <strong>心得：</strong> 熟悉了 Python 列表的切片與反轉操作。</p>
+<hr/>
+<h4>07 - 修改列表元素：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/07">程式碼</a></p>
+<pre><code class="language-python">senses = ["eyes", "nose", "ears", "tongue", "skin"]
+senses[1] = "smell"
+senses[3:5] = ["taste", "touch"]
+planets = ["Mercury", "Mars", "Earth", "Neptune"]
+planets = planets + ["Jupiter"]
+planets = planets[0:2] + ["Venus"] + planets[2:5]
+</code></pre>
+<p><strong>說明：</strong> 修改和合併列表元素，演示了替換和拼接操作。<br/> <strong>心得：</strong> 學會了列表的元素修改和拼接方法。</p>
+<hr/>
+<h4>08 - 朋友和菜肴：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/08">程式碼</a></p>
+<pre><code class="language-python">friends = ["Geetha", "Luca", "Daisy", "Juhan"]
+dishes = ["sushi", "burgers", "tacos", "pizza"]
+for index in range(0, 4):
+    print("My friend " + friends[index] + "'s favorite dish is " + dishes[index])
+</code></pre>
+<p><strong>說明：</strong> 輸出每個朋友及其喜歡的菜肴。<br/> <strong>心得：</strong> 理解了如何通過 <code inline="">for</code> 循環遍歷多個列表中的元素並輸出。</p>
+<hr/>
+<h4>09 - 動物循環：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/09">程式碼</a></p>
+<pre><code class="language-python">animals = ["giraffe", "penguin", "dolphin"]
+wanted_to_see = "penguin"
+for i in range(0, len(animals)):
+    print("-- Beginning of loop --")
+    print("The element in position " + str(i) + " is " + animals[i])
+for i in range(0, len(animals)):
+    if animals[i] == wanted_to_see:
+        print("I saw a " + animals[i] + " and I really wanted to see it!")
+    else:
+        print("I saw a " + animals[i])
+</code></pre>
+<p><strong>說明：</strong> 遍歷動物列表，檢查是否是你想要看到的動物。<br/> <strong>心得：</strong> 學會了如何在循環中加入條件判斷，並做出相應輸出。</p>
+<hr/>
+<h4>10 - 配件列表：</h4>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/203528692f1f982359a8dc7490e71057/raw/6f557301e1ccf77fe69344dacacb36b2854c7f80/10">程式碼</a></p>
+<pre><code class="language-python">accessories = ["belt", "hat", "gloves", "sunglasses", "ring"]
+for i in range(len(accessories)):
+    print("The element " + accessories[i] + " is in position " + str(i))
+for i in range(len(accessories)):
+    if len(accessories[i]) == 6:
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
+</code></pre>
+<p><strong>說明：</strong> 根據字符串的長度檢查配件列表中的元素。<br/> <strong>心得：</strong> 學會了如何使用條件判斷和字符串長度方法處理列表中的元素。</p>
+<hr/>
+<h4>總結：</h4>
+<p>這些程式幫助我掌握了 Python 中常用的列表操作、條件判斷、循環結構等基本知識。每個程式展示了如何有效地操作和管理數據，並輸出結果。通過這些練習，可以加深對 Python 基礎語法和數據結構的理解。</p><br />w12 << <a href='w12.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw</div>
         
     <!-- footer -->
       <div class="container">
