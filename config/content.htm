@@ -370,17 +370,60 @@ window.onload=function(){
 <p></p>
 <p><span>題目一: 請利用 Gist 與 Brython 程式環境, 在個人的課程網站中新增一個頁面, 標題為 w15, 以"從 1 累加到 100"作為 anchor 的連結標題, 使用者點擊該連結之後, 可從各自的 Brython 頁面執行程式.</span></p>
 <p><span><strong>設計思考</strong><br/>這個需求可以透過 Python 的 <code>range()</code> 函式與 <code>sum()</code> 函式快速達成。我們利用 <code>sum(range(1, 101))</code> 來計算 1 到 100 的總和，並將結果顯示在網頁上。</span></p>
-<p><span><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/854b3fb01bdec4afd78abcb3a4b5022d92304a88/%25E9%25A1%258C%25E7%259B%25AE1">題目1程式</a></span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">def addto(init, addto):
+    sum = 0
+    for i in range(init, addto + 1):
+        sum += i
+    print(f"從 {init} 到 {addto} 的累加結果是: {sum}")
+
+# 計算從 1 到 100
+addto(1, 100)
+</pre>
+<p><br/><br/></p>
+<p><span><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/d78142d105028b673b01973c7594944644b475a5/%25E9%25A1%258C%25E7%259B%25AE1">題目1程式</a></span></p>
 <p>題目二: 延伸上題, 設計一個函式 addto(1, 100), 可以完成上述的累加結果. (以"addto"作為連結標題)</p>
 <p>這個函式接收兩個參數 <code>start</code> 和 <code>end</code>，並回傳從 <code>start</code> 累加到 <code>end</code> 的總和。<code>sum(range(start, end + 1))</code> 會生成一個從 <code>start</code> 到 <code>end</code> 的數字列表，並對其進行累加。</p>
-<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/854b3fb01bdec4afd78abcb3a4b5022d92304a88/%25E9%25A1%258C%25E7%259B%25AE2">題目2程式</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">def addto(init, addto):
+    sum = 0
+    for i in range(init, addto + 1):
+        sum += i
+    print(f"addto 函式的總和是: {sum}")
+
+# 使用 addto 函式計算從 1 到 100
+addto(1, 100)
+</pre>
+<p><br/><br/></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"></pre>
+<p><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/d78142d105028b673b01973c7594944644b475a5/%25E9%25A1%258C%25E7%259B%25AE2">addto</a></p>
 <p>題目三: 延伸上題, 設計一個函式 add_only_even(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加結果. 頁面中請以 <span>add_only_even 作為連結標題.</span></p>
 <p><span>我們需要只累加範圍內的偶數，可以利用條件判斷 <code>i % 2 == 0</code> 來篩選出偶數。<code>sum(i for i in range(start, end + 1) if i % 2 == 0)</code> 會累加所有符合條件的偶數。</span></p>
-<p><span><a href="https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/854b3fb01bdec4afd78abcb3a4b5022d92304a88/%25E9%25A1%258C%25E7%259B%25AE3">題目3程式</a></span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">def add_only_even(init, addto):
+    sum = 0
+    for i in range(init, addto + 1):
+        if i % 2 == 0:  # 判斷是否為偶數
+            sum += i
+    print(f"從 {init} 到 {addto} 之間的偶數總和是: {sum}")
+
+# 計算從 1 到 100 之間的偶數總和
+add_only_even(1, 100)
+</pre>
+<p><span><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/d78142d105028b673b01973c7594944644b475a5/%25E9%25A1%258C%25E7%259B%25AE3"> add_only_even</a></span></p>
 <p><span>題目四: 延伸上題, 設計一個函式 add_avoid_8(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加過程, 必須避開數字出現"8"的整數, 頁面中請以 add_avoid_8 作為連結標題.</span></p>
-<p><span><strong>設計思考</strong><br/>我們需要避開數字中出現 "8" 的整數。可以將數字轉換成字串並檢查字串中是否包含 <code>"8"</code>，然後排除這些數字。<code>sum(i for i in range(start, end + 1) if '8' not in str(i))</code> 可以達到此目的。</span></p>
-<p><span><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/854b3fb01bdec4afd78abcb3a4b5022d92304a88/%25E9%25A1%258C%25E7%259B%25AE4">題目4程式</a></span></p>
-<p><span></span></p>
+<p><span><strong>設計思考</strong><br/>我們需要避開數字中出現 "8" 的整數。可以將數字轉換成字串並檢查字串中是否包含 <code>"8"</code>，然後排除這些數字。<code>sum(i for i in range(start, end + 1) if '8' not in str(i))</code> 可以達到此目的</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def add_avoid_8(init, addto):
+    sum = 0
+    for i in range(init, addto + 1):
+        if '8' not in str(i):  # 如果數字中不包含 "8"
+            sum += i
+    print(f"從 {init} 到 {addto} 之間，避開包含 8 的總和是: {sum}")
+
+# 計算從 1 到 100 之間，避開包含 8 的數字的總和
+add_avoid_8(1, 100)
+</pre>
+<p></p>
+<p><span><a href="https://glorious-spork-r4p4rv4q99wqfxgvj-8081.app.github.dev/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/4db4ae3a059c735cef601fa7ef40b466/raw/d78142d105028b673b01973c7594944644b475a5/%25E9%25A1%258C%25E7%259B%25AE4">add_avoid_8</a></span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"></pre>
+<p></p>
 <!-- Python 程式碼 -->
 <p>
 <script type="text/python3">

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>從 1 累加到 100</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"></script>
+</head>
+<body onload="brython()">
+    <h2>從 1 累加到 100</h2>
+    <button id="btn1">計算總和</button>
+    <p id="result1"></p>
+
+    <script type="text/python">
+        from browser import document
+
+        def sum_1_to_100(event):
+            total = sum(range(1, 101))
+            document["result1"].text = f"總和是: {total}"
+
+        document["btn1"].bind("click", sum_1_to_100)
+    </script>
+</body>
+</html>
+
