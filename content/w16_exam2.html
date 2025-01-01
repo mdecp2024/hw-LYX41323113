@@ -2,7 +2,7 @@
         <head>
         <title>cp_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,10 +141,88 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 3 << <a href='HW 3.html'>Previous</a> <a href='w16_exam2.html'>Next</a> >> w16_exam2<br /><h1>HW 3 Exam</h1>
-<p>每六人為一組進行協同程式練習</p>
-<p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 3 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<p>w16_exam2</p><br />HW 3 << <a href='HW 3.html'>Previous</a> <a href='w16_exam2.html'>Next</a> >> w16_exam2</div>
+    <div id="tipue_search_content">HW 3 Exam << <a href='HW 3 Exam.html'>Previous</a> <a href='HW 4.html'>Next</a> >> HW 4<br /><h1>w16_exam2</h1>
+<p><a href="https://mdecp2024.github.io/hw-LYX41323113/content/Brython.html?src=https://gist.githubusercontent.com/LYX41323113/eada18a0a87dbe384e2da225dd20571b/raw/ac1de66cc6d7ff9691b060b4b09204704111070c/w16_exam2">程式碼</a></p>
+<p><canvas height="600" id="my_canvas" style="border: 1px solid black;" width="900"></canvas></p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/6H2o8hAErxc" width="560"></iframe></p>
+<p></p>
+<p></p>
+<!-- 导入 Brython 库 -->
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
+<!-- 启动 Brython -->
+<script>
+window.onload = function () {
+    brython();
+};
+</script>
+<script type="text/python">
+import math
+from browser import document, html
+
+# 初始化 HTML，确保 canvas 元素存在
+def setup_canvas():
+    existing_canvas = document.querySelector("#my_canvas")
+    if existing_canvas:
+        existing_canvas.remove()
+    canvas = html.CANVAS(id="my_canvas", width=400, height=315)  # 缩小后的宽高
+    document <= canvas
+
+setup_canvas()
+
+# 获取 canvas 元素及上下文
+canvas = document["my_canvas"]
+ctx = canvas.getContext("2d")
+
+# 画布参数
+origin_x, origin_y = 31 / 2, 50 / 2  # 缩小后的原点
+line_width = 2
+font_size = 18
+ctx.font = f"{font_size}px Arial"
+ctx.fillStyle = "red"
+
+# 绘制文本
+ctx.fillText("(31, 13)", origin_x + 5, origin_y - 7.5)
+
+# 通用绘制线段函数
+def draw_line(x1, y1, x2, y2, color="blue", width=2):
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.strokeStyle = color
+    ctx.lineWidth = width
+    ctx.stroke()
+
+# 绘制 X 轴分段线
+x_coords = [
+    (origin_x, origin_y, 320 / 2, origin_y),
+    (480 / 2, origin_y, 800 / 2, origin_y),
+    (160 / 2, 150 / 2, 640 / 2, 150 / 2),
+    (origin_x, 270 / 2, 320 / 2, 270 / 2),
+    (160 / 2, 390 / 2, 640 / 2, 390 / 2),
+    (320 / 2, 510 / 2, 480 / 2, 510 / 2),
+    (origin_x, 630 / 2, 320 / 2, 630 / 2),
+    (480 / 2, 630 / 2, 800 / 2, 630 / 2),
+]
+
+for x1, y1, x2, y2 in x_coords:
+    draw_line(x1, y1, x2, y2)
+
+# 绘制 Y 轴分段线
+y_coords = [
+    (origin_x, origin_y, origin_x, 630 / 2),
+    (160 / 2, 390 / 2, 160 / 2, 510 / 2),
+    (320 / 2, 150 / 2, 320 / 2, 270 / 2),
+    (320 / 2, 510 / 2, 320 / 2, 630 / 2),
+    (480 / 2, 270 / 2, 480 / 2, 390 / 2),
+    (640 / 2, 150 / 2, 640 / 2, 270 / 2),
+    (640 / 2, 390 / 2, 640 / 2, 630 / 2),
+    (800 / 2, origin_y, 800 / 2, 630 / 2),
+]
+
+for x1, y1, x2, y2 in y_coords:
+    draw_line(x1, y1, x2, y2)
+</script><br />HW 3 Exam << <a href='HW 3 Exam.html'>Previous</a> <a href='HW 4.html'>Next</a> >> HW 4</div>
         
     <!-- footer -->
       <div class="container">

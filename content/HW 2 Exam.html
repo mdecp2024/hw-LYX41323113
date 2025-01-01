@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a><li><a href='w14_ex.html'>w14_ex</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a><li><a href='w14_ex.html'>w14_ex</a><li><a href='w15.html'>w15</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li class='has-children'><a href='HW 2 Exam.html'>HW 2 Exam</a><ul class='dropdown'><li><a href='w16_exam1-1.html'>w16_exam1-1</a><li><a href='w16_exam1-2.html'>w16_exam1-2</a></li></li></ul></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w16_exam2.html'>w16_exam2</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li class='has-children'><a href='HW 4 Exam.html'>HW 4 Exam</a><ul class='dropdown'><li><a href='w16_exam3.html'>w16_exam3</a></li></li></ul></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,10 +141,74 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 2 << <a href='HW 2.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3<br /><h1>HW 2 Exam</h1>
+    <div id="tipue_search_content">HW 2 << <a href='HW 2.html'>Previous</a> <a href='w16_exam1-1.html'>Next</a> >> w16_exam1-1<br /><h1>HW 2 Exam</h1>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<br />HW 2 << <a href='HW 2.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3</div>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js" type="text/javascript"></script>
+<h6></h6>
+<script type="text/python">
+        from browser import document, svg, timer
+
+        # 設定迷宮畫布的大小
+        canvas_width, canvas_height = 400, 400
+
+        # 創建 SVG 畫布
+        canvas = svg.svg(width=canvas_width, height=canvas_height)
+        document <= canvas
+
+        # 設定起點，根據學號 (3113) -> (31, 13)
+        start_x, start_y = 31, 13
+        current_x, current_y = start_x * 10, start_y * 10
+
+        # 終點
+        end_x, end_y = 350, 350
+
+        # 繪製迷宮牆壁
+        walls = [
+            ((50, 50), (350, 50)),  # 上邊框
+            ((50, 50), (50, 350)),  # 左邊框
+            ((350, 50), (350, 350)),  # 右邊框
+            ((50, 350), (350, 350)),  # 下邊框
+            ((150, 50), (150, 250)),  # 垂直內牆 1
+            ((250, 100), (250, 350)),  # 垂直內牆 2
+            ((150, 250), (250, 250)),  # 水平內牆
+        ]
+        for (x1, y1), (x2, y2) in walls:
+            canvas <= svg.line(x1=x1, y1=y1, x2=x2, y2=y2, stroke="black", stroke_width=5)
+
+        # 畫出起點 (紅色圓點)
+        canvas <= svg.circle(cx=current_x, cy=current_y, r=5, fill="red")
+
+        # 畫出終點 (藍色圓點)
+        canvas <= svg.circle(cx=end_x, cy=end_y, r=5, fill="blue")
+
+        # 綠色點，代表移動中的物體
+        moving_point = svg.circle(cx=current_x, cy=current_y, r=5, fill="green")
+        canvas <= moving_point
+
+        # 定義移動邏輯
+        def move():
+            global current_x, current_y
+            if current_x < end_x:
+                current_x += 10
+            elif current_y < end_y:
+                current_y += 10
+            else:
+                timer.clear_interval(move_timer)  # 到達終點，停止移動
+
+            # 更新綠色點的位置
+            moving_point.attrs["cx"] = current_x
+            moving_point.attrs["cy"] = current_y
+
+        # 每 100 毫秒執行一次移動
+        move_timer = timer.set_interval(move, 100)
+    
+</script><br />HW 2 << <a href='HW 2.html'>Previous</a> <a href='w16_exam1-1.html'>Next</a> >> w16_exam1-1</div>
         
     <!-- footer -->
       <div class="container">

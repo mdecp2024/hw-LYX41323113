@@ -2,7 +2,7 @@
         <head>
         <title>cp_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,10 +141,146 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 3 << <a href='HW 3.html'>Previous</a> <a href='w16_exam2.html'>Next</a> >> w16_exam2<br /><h1>HW 3 Exam</h1>
-<p>每六人為一組進行協同程式練習</p>
-<p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 3 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<p>w16_exam2</p><br />HW 3 << <a href='HW 3.html'>Previous</a> <a href='w16_exam2.html'>Next</a> >> w16_exam2</div>
+    <div id="tipue_search_content">w16_exam1-1 << <a href='w16_exam1-1.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3<br /><h1>w16_exam1-2</h1>
+<!-- 导入 Brython 库 -->
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
+<!-- 启动 Brython -->
+<script>
+window.onload = function () {
+    brython();
+};
+</script>
+<script type="text/python">
+import math
+from browser import document
+
+# 获取画布与绘图上下文
+canvas = document["canvas"]
+ctx = canvas.getContext("2d")
+
+# 设置起始坐标 (31, 13)
+origin_x = 31 * 15  # 乘以15，增加比例，适配画布
+origin_y = 13 * 15  # 乘以15，增加比例，适配画布
+spacing = 80  # 每个图形之间的间距，调整为80避免重叠
+
+# 调整起始坐标，向左移动
+offset_x = -200  # 将此值设置为更小的负值，确保图形向左偏移
+
+# 绘制坐标轴
+def draw_axes():
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+
+    # X轴
+    ctx.beginPath()
+    ctx.moveTo(origin_x + offset_x, origin_y)
+    ctx.lineTo(canvas.width, origin_y)  # 向右延伸
+    ctx.stroke()
+
+    # Y轴
+    ctx.beginPath()
+    ctx.moveTo(origin_x + offset_x, origin_y)
+    ctx.lineTo(origin_x + offset_x, canvas.height)  # 向下延伸
+    ctx.stroke()
+
+    # 标记原点
+    ctx.fillStyle = "black"
+    ctx.font = "12px Arial"
+    ctx.fillText(f"({31}, {13})", origin_x + offset_x + 5, origin_y - 5)
+
+# 绘制橘色六边形
+def draw_orange_hexagon(x, y, radius):
+    ctx.fillStyle = "orange"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    for i in range(6):
+        angle = math.pi / 3 * i
+        x_offset = x + radius * math.cos(angle)
+        y_offset = y + radius * math.sin(angle)
+        if i == 0:
+            ctx.moveTo(x_offset, y_offset)
+        else:
+            ctx.lineTo(x_offset, y_offset)
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制绿色菱形
+def draw_green_diamond(x, y, width, height):
+    ctx.fillStyle = "green"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(x, y - height / 2)  # 上顶点
+    ctx.lineTo(x + width / 2, y)  # 右顶点
+    ctx.lineTo(x, y + height / 2)  # 下顶点
+    ctx.lineTo(x - width / 2, y)  # 左顶点
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制正三角形
+def draw_equilateral_triangle(x, y, side_length):
+    ctx.fillStyle = "blue"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    height = math.sqrt(3) / 2 * side_length  # 计算等边三角形的高度
+    ctx.moveTo(x, y - height / 2)  # 顶点
+    ctx.lineTo(x - side_length / 2, y + height / 2)  # 左下顶点
+    ctx.lineTo(x + side_length / 2, y + height / 2)  # 右下顶点
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制粉红圆形
+def draw_pink_circle(x, y, radius):
+    ctx.fillStyle = "pink"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.arc(x, y, radius, 0, 2 * math.pi)
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制黄色正方形
+def draw_yellow_square(x, y, size):
+    ctx.fillStyle = "yellow"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.fillRect(x, y, size, size)
+    ctx.strokeRect(x, y, size, size)
+
+# 绘制深蓝色长方形
+def draw_dark_blue_rectangle(x, y, width, height):
+    ctx.fillStyle = "darkblue"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.fillRect(x, y, width, height)
+    ctx.strokeRect(x, y, width, height)
+
+# 主程序：清空画布并绘图
+def draw():
+    ctx.clearRect(0, 0, canvas.width, canvas.height)  # 清空画布
+    draw_axes()  # 绘制坐标轴
+
+    # 计算象限内的位置
+    shape_x_start = origin_x + spacing + offset_x  # 起始的横坐标
+    shape_y_start = origin_y + spacing  # 起始的纵坐标
+
+    # 调整图形位置，使它们分布在象限内
+    draw_orange_hexagon(shape_x_start, shape_y_start, 50)  # 橘色六边形
+    draw_green_diamond(shape_x_start + spacing, shape_y_start, 60, 120)  # 绿色菱形
+    draw_equilateral_triangle(shape_x_start + spacing * 2, shape_y_start, 60)  # 正三角形
+    draw_pink_circle(shape_x_start + spacing * 3, shape_y_start, 40)  # 粉红圆形
+    draw_yellow_square(shape_x_start + spacing * 4, shape_y_start, 50)  # 黄色正方形
+    draw_dark_blue_rectangle(shape_x_start + spacing * 5, shape_y_start, 100, 50)  # 深蓝色长方形
+
+# 初始化绘图
+draw()
+</script><br />w16_exam1-1 << <a href='w16_exam1-1.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3</div>
         
     <!-- footer -->
       <div class="container">
