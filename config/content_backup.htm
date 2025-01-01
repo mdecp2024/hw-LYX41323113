@@ -1001,7 +1001,7 @@ for x1, y1, x2, y2 in y_coords:
 <p></p>
 <p></p>
 <h3>w16_exam3</h3>
-<p><canvas height="300" id="canvas" style="border: 1px solid black;" width="500"></canvas></p>
+<p><canvas height="600" id="canvas" style="border: 1px solid black;" width="1000"></canvas></p>
 <!-- 导入 Brython 库 -->
 <script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
@@ -1018,7 +1018,7 @@ from browser import document, html
 # 初始化 HTML，确保 canvas 元素存在
 def setup_canvas():
     if not document.querySelector("#canvas"):
-        canvas = html.CANVAS(id="canvas", width=500, height=300)
+        canvas = html.CANVAS(id="canvas", width=1000, height=600)
         document <= canvas
 
 setup_canvas()
@@ -1028,125 +1028,125 @@ canvas = document["canvas"]
 ctx = canvas.getContext("2d")
 
 # Set origin (31, 13)
-origin_x, origin_y = 15.5, 6.5
-ctx.font = "6px Arial"  # 缩小字体大小
+origin_x, origin_y = 31, 13
+ctx.font = "12px Arial"  # 缩小字体大小
 ctx.fillStyle = "red"
-ctx.fillText("(31, 13)", origin_x + 5, origin_y - 4)  # 在红点的右上方标出坐标
+ctx.fillText("(31, 13)", origin_x + 10, origin_y - 8)  # 在红点的右上方标出坐标
 
 # Draw X
 ctx.beginPath()
 ctx.moveTo(origin_x, origin_y)
-ctx.lineTo(90, origin_y)
-ctx.moveTo(130, origin_y)
-ctx.lineTo(210, origin_y)
+ctx.lineTo(180, origin_y)
+ctx.moveTo(260, origin_y)
+ctx.lineTo(420, origin_y)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(50, 45)
-ctx.lineTo(170, 45)
+ctx.moveTo(100, 90)
+ctx.lineTo(340, 90)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(origin_x, 75)
-ctx.lineTo(90, 75)
+ctx.moveTo(origin_x, 150)
+ctx.lineTo(180, 150)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(50, 105)
-ctx.lineTo(170, 105)
+ctx.moveTo(100, 210)
+ctx.lineTo(340, 210)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(90, 135)
-ctx.lineTo(130, 135)
+ctx.moveTo(180, 270)
+ctx.lineTo(260, 270)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(origin_x, 165)
-ctx.lineTo(90, 165)
-ctx.moveTo(130, 165)
-ctx.lineTo(210, 165)
+ctx.moveTo(origin_x, 330)
+ctx.lineTo(180, 330)
+ctx.moveTo(260, 330)
+ctx.lineTo(420, 330)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 # Draw Y
 ctx.beginPath()
 ctx.moveTo(origin_x, origin_y)
-ctx.lineTo(origin_x, 165)
+ctx.lineTo(origin_x, 330)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(50, 105)
-ctx.lineTo(50, 135)
+ctx.moveTo(100, 210)
+ctx.lineTo(100, 270)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(90, 45)
-ctx.lineTo(90, 75)
-ctx.moveTo(90, 135)
-ctx.lineTo(90, 165)
+ctx.moveTo(180, 90)
+ctx.lineTo(180, 150)
+ctx.moveTo(180, 270)
+ctx.lineTo(180, 330)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(130, 75)
-ctx.lineTo(130, 105)
+ctx.moveTo(260, 150)
+ctx.lineTo(260, 210)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(170, 45)
-ctx.lineTo(170, 75)
-ctx.moveTo(170, 105)
-ctx.lineTo(170, 165)
+ctx.moveTo(340, 90)
+ctx.lineTo(340, 150)
+ctx.moveTo(340, 210)
+ctx.lineTo(340, 330)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 ctx.beginPath()
-ctx.moveTo(210, origin_y)
-ctx.lineTo(210, 165)
+ctx.moveTo(420, origin_y)
+ctx.lineTo(420, 330)
 ctx.strokeStyle = "blue"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 
 # Draw Path
 ctx.beginPath()
-ctx.moveTo(110, origin_y)
-ctx.lineTo(110, 30)
-ctx.lineTo(190, 30)
-ctx.lineTo(190, 90)
-ctx.lineTo(150, 90)
-ctx.lineTo(150, 65)
-ctx.lineTo(110, 65)
-ctx.lineTo(110, 90)
-ctx.lineTo(30, 90)
-ctx.lineTo(30, 160)
-ctx.lineTo(70, 160)
-ctx.lineTo(70, 120)
-ctx.lineTo(150, 120)
-ctx.lineTo(150, 160)
-ctx.lineTo(110, 160)
-ctx.lineTo(110, 165)
+ctx.moveTo(220, origin_y)
+ctx.lineTo(220, 60)
+ctx.lineTo(380, 60)
+ctx.lineTo(380, 180)
+ctx.lineTo(300, 180)
+ctx.lineTo(300, 130)
+ctx.lineTo(220, 130)
+ctx.lineTo(220, 180)
+ctx.lineTo(60, 180)
+ctx.lineTo(60, 320)
+ctx.lineTo(140, 320)
+ctx.lineTo(140, 240)
+ctx.lineTo(300, 240)
+ctx.lineTo(300, 320)
+ctx.lineTo(220, 320)
+ctx.lineTo(220, 330)
 ctx.strokeStyle = "red"
-ctx.lineWidth = 0.6
+ctx.lineWidth = 1.2
 ctx.stroke()
 </script><h1>Final Report</h1>
 <p>期末口頭與書面專題報告 (20%)</p>
