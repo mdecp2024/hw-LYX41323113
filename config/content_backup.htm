@@ -535,13 +535,227 @@ draw_circles(x1, y1, radius, x2, y2, radius, x3, y3, radius)
 <p>延續 HW 1 網頁資料整理與程式練習方法, 整理下列內容 (20%):</p>
 <p>PART 2: Introduction to lists and if/else statements</p>
 <p>PART 3: Introduction to the for loop</p>
-<p>完成上述流程整理後, 請將 HW2 自評分數輸入 cp2024 自評表單中.</p><h2>HW 2 Exam</h2>
+<p>完成上述流程整理後, 請將 HW2 自評分數輸入 cp2024 自評表單中.</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<h4></h4><h2>HW 2 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <p></p>
 <p></p>
-<h3>w16_exam1</h3>
-<p><canvas height="500" id="canvas" style="border: 1px solid black;" width="900"></canvas></p>
+<p></p>
+<p></p>
+<p></p>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js" type="text/javascript"></script>
+<h6></h6>
+<script type="text/python">
+        from browser import document, svg, timer
+
+        # 設定迷宮畫布的大小
+        canvas_width, canvas_height = 400, 400
+
+        # 創建 SVG 畫布
+        canvas = svg.svg(width=canvas_width, height=canvas_height)
+        document <= canvas
+
+        # 設定起點，根據學號 (3113) -> (31, 13)
+        start_x, start_y = 31, 13
+        current_x, current_y = start_x * 10, start_y * 10
+
+        # 終點
+        end_x, end_y = 350, 350
+
+        # 繪製迷宮牆壁
+        walls = [
+            ((50, 50), (350, 50)),  # 上邊框
+            ((50, 50), (50, 350)),  # 左邊框
+            ((350, 50), (350, 350)),  # 右邊框
+            ((50, 350), (350, 350)),  # 下邊框
+            ((150, 50), (150, 250)),  # 垂直內牆 1
+            ((250, 100), (250, 350)),  # 垂直內牆 2
+            ((150, 250), (250, 250)),  # 水平內牆
+        ]
+        for (x1, y1), (x2, y2) in walls:
+            canvas <= svg.line(x1=x1, y1=y1, x2=x2, y2=y2, stroke="black", stroke_width=5)
+
+        # 畫出起點 (紅色圓點)
+        canvas <= svg.circle(cx=current_x, cy=current_y, r=5, fill="red")
+
+        # 畫出終點 (藍色圓點)
+        canvas <= svg.circle(cx=end_x, cy=end_y, r=5, fill="blue")
+
+        # 綠色點，代表移動中的物體
+        moving_point = svg.circle(cx=current_x, cy=current_y, r=5, fill="green")
+        canvas <= moving_point
+
+        # 定義移動邏輯
+        def move():
+            global current_x, current_y
+            if current_x < end_x:
+                current_x += 10
+            elif current_y < end_y:
+                current_y += 10
+            else:
+                timer.clear_interval(move_timer)  # 到達終點，停止移動
+
+            # 更新綠色點的位置
+            moving_point.attrs["cx"] = current_x
+            moving_point.attrs["cy"] = current_y
+
+        # 每 100 毫秒執行一次移動
+        move_timer = timer.set_interval(move, 100)
+    
+</script><h3>w16_exam1</h3>
+<p><canvas height="500" id="canvas" style="border: 1px solid black;" width="900"><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/KFTJjCPHz4E" width="560"></iframe></canvas></p>
+<p></p>
+<p></p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/KFTJjCPHz4E" width="560"></iframe></p>
+<!-- 导入 Brython 库 -->
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
+<!-- 启动 Brython -->
+<script>
+window.onload = function () {
+    brython();
+};
+</script>
+<script type="text/python">
+import math
+from browser import document
+
+# 获取画布与绘图上下文
+canvas = document["canvas"]
+ctx = canvas.getContext("2d")
+
+# 设置起始坐标 (31, 13)
+origin_x = 31 * 15  # 乘以15，增加比例，适配画布
+origin_y = 13 * 15  # 乘以15，增加比例，适配画布
+spacing = 80  # 每个图形之间的间距，调整为80避免重叠
+
+# 调整起始坐标，向左移动
+offset_x = -200  # 将此值设置为更小的负值，确保图形向左偏移
+
+# 绘制坐标轴
+def draw_axes():
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+
+    # X轴
+    ctx.beginPath()
+    ctx.moveTo(origin_x + offset_x, origin_y)
+    ctx.lineTo(canvas.width, origin_y)  # 向右延伸
+    ctx.stroke()
+
+    # Y轴
+    ctx.beginPath()
+    ctx.moveTo(origin_x + offset_x, origin_y)
+    ctx.lineTo(origin_x + offset_x, canvas.height)  # 向下延伸
+    ctx.stroke()
+
+    # 标记原点
+    ctx.fillStyle = "black"
+    ctx.font = "12px Arial"
+    ctx.fillText(f"({31}, {13})", origin_x + offset_x + 5, origin_y - 5)
+
+# 绘制橘色六边形
+def draw_orange_hexagon(x, y, radius):
+    ctx.fillStyle = "orange"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    for i in range(6):
+        angle = math.pi / 3 * i
+        x_offset = x + radius * math.cos(angle)
+        y_offset = y + radius * math.sin(angle)
+        if i == 0:
+            ctx.moveTo(x_offset, y_offset)
+        else:
+            ctx.lineTo(x_offset, y_offset)
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制绿色菱形
+def draw_green_diamond(x, y, width, height):
+    ctx.fillStyle = "green"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(x, y - height / 2)  # 上顶点
+    ctx.lineTo(x + width / 2, y)  # 右顶点
+    ctx.lineTo(x, y + height / 2)  # 下顶点
+    ctx.lineTo(x - width / 2, y)  # 左顶点
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制正三角形
+def draw_equilateral_triangle(x, y, side_length):
+    ctx.fillStyle = "blue"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    height = math.sqrt(3) / 2 * side_length  # 计算等边三角形的高度
+    ctx.moveTo(x, y - height / 2)  # 顶点
+    ctx.lineTo(x - side_length / 2, y + height / 2)  # 左下顶点
+    ctx.lineTo(x + side_length / 2, y + height / 2)  # 右下顶点
+    ctx.closePath()
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制粉红圆形
+def draw_pink_circle(x, y, radius):
+    ctx.fillStyle = "pink"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.arc(x, y, radius, 0, 2 * math.pi)
+    ctx.fill()
+    ctx.stroke()
+
+# 绘制黄色正方形
+def draw_yellow_square(x, y, size):
+    ctx.fillStyle = "yellow"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.fillRect(x, y, size, size)
+    ctx.strokeRect(x, y, size, size)
+
+# 绘制深蓝色长方形
+def draw_dark_blue_rectangle(x, y, width, height):
+    ctx.fillStyle = "darkblue"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    ctx.fillRect(x, y, width, height)
+    ctx.strokeRect(x, y, width, height)
+
+# 主程序：清空画布并绘图
+def draw():
+    ctx.clearRect(0, 0, canvas.width, canvas.height)  # 清空画布
+    draw_axes()  # 绘制坐标轴
+
+    # 计算象限内的位置
+    shape_x_start = origin_x + spacing + offset_x  # 起始的横坐标
+    shape_y_start = origin_y + spacing  # 起始的纵坐标
+
+    # 调整图形位置，使它们分布在象限内
+    draw_orange_hexagon(shape_x_start, shape_y_start, 50)  # 橘色六边形
+    draw_green_diamond(shape_x_start + spacing, shape_y_start, 60, 120)  # 绿色菱形
+    draw_equilateral_triangle(shape_x_start + spacing * 2, shape_y_start, 60)  # 正三角形
+    draw_pink_circle(shape_x_start + spacing * 3, shape_y_start, 40)  # 粉红圆形
+    draw_yellow_square(shape_x_start + spacing * 4, shape_y_start, 50)  # 黄色正方形
+    draw_dark_blue_rectangle(shape_x_start + spacing * 5, shape_y_start, 100, 50)  # 深蓝色长方形
+
+# 初始化绘图
+draw()
+</script><h3>w16_exam1</h3>
 <!-- 导入 Brython 库 -->
 <script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
@@ -684,10 +898,92 @@ draw()
 <h4>主題13: Python 的數字、演算法與迴圈 (20%)</h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 4 and Part 5</p>
 <p>完成上述流程整理後, 請將 HW3 自評分數輸入 cp2024 自評表單中.</p>
-<h2>HW 3 Exam</h2>
+<p></p>
+<p></p>
+<p></p>
+<p>w16_exam2</p><h2>HW 3 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 3 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<h1>HW 4</h1>
+<p>w16_exam2</p><h3>w16_exam2</h3>
+<p><canvas height="600" id="my_canvas" style="border: 1px solid black;" width="900"></canvas></p>
+<p></p>
+<p></p>
+<!-- 导入 Brython 库 -->
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
+<!-- 启动 Brython -->
+<script>
+window.onload = function () {
+    brython();
+};
+</script>
+<script type="text/python">
+import math
+from browser import document, html
+
+# 初始化 HTML，确保 canvas 元素存在
+def setup_canvas():
+    existing_canvas = document.querySelector("#my_canvas")
+    if existing_canvas:
+        existing_canvas.remove()
+    canvas = html.CANVAS(id="my_canvas", width=400, height=315)  # 缩小后的宽高
+    document <= canvas
+
+setup_canvas()
+
+# 获取 canvas 元素及上下文
+canvas = document["my_canvas"]
+ctx = canvas.getContext("2d")
+
+# 画布参数
+origin_x, origin_y = 31 / 2, 50 / 2  # 缩小后的原点
+line_width = 2
+font_size = 18
+ctx.font = f"{font_size}px Arial"
+ctx.fillStyle = "red"
+
+# 绘制文本
+ctx.fillText("(31, 13)", origin_x + 5, origin_y - 7.5)
+
+# 通用绘制线段函数
+def draw_line(x1, y1, x2, y2, color="blue", width=2):
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.strokeStyle = color
+    ctx.lineWidth = width
+    ctx.stroke()
+
+# 绘制 X 轴分段线
+x_coords = [
+    (origin_x, origin_y, 320 / 2, origin_y),
+    (480 / 2, origin_y, 800 / 2, origin_y),
+    (160 / 2, 150 / 2, 640 / 2, 150 / 2),
+    (origin_x, 270 / 2, 320 / 2, 270 / 2),
+    (160 / 2, 390 / 2, 640 / 2, 390 / 2),
+    (320 / 2, 510 / 2, 480 / 2, 510 / 2),
+    (origin_x, 630 / 2, 320 / 2, 630 / 2),
+    (480 / 2, 630 / 2, 800 / 2, 630 / 2),
+]
+
+for x1, y1, x2, y2 in x_coords:
+    draw_line(x1, y1, x2, y2)
+
+# 绘制 Y 轴分段线
+y_coords = [
+    (origin_x, origin_y, origin_x, 630 / 2),
+    (160 / 2, 390 / 2, 160 / 2, 510 / 2),
+    (320 / 2, 150 / 2, 320 / 2, 270 / 2),
+    (320 / 2, 510 / 2, 320 / 2, 630 / 2),
+    (480 / 2, 270 / 2, 480 / 2, 390 / 2),
+    (640 / 2, 150 / 2, 640 / 2, 270 / 2),
+    (640 / 2, 390 / 2, 640 / 2, 630 / 2),
+    (800 / 2, origin_y, 800 / 2, 630 / 2),
+]
+
+for x1, y1, x2, y2 in y_coords:
+    draw_line(x1, y1, x2, y2)
+</script><h1>HW 4</h1>
 <h4>主題: 利用 Python 控制機電模擬系統 (20%)</h4>
 <p style="padding-left: 30px;">利用 <a href="https://solvespace.com/">https://solvespace.com/</a> 建立機械系統零組件</p>
 <p style="padding-left: 30px;">利用 <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a> 建立機電模擬系統</p>
@@ -699,7 +995,160 @@ draw()
 <h2>HW 4 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 4 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<h1>Final Report</h1>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<h3>w16_exam3</h3>
+<p><canvas height="300" id="canvas" style="border: 1px solid black;" width="500"></canvas></p>
+<!-- 导入 Brython 库 -->
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js"></script>
+<!-- 启动 Brython -->
+<script>
+window.onload = function () {
+    brython();
+};
+</script>
+<script type="text/python">
+import math
+from browser import document, html
+
+# 初始化 HTML，确保 canvas 元素存在
+def setup_canvas():
+    if not document.querySelector("#canvas"):
+        canvas = html.CANVAS(id="canvas", width=500, height=300)
+        document <= canvas
+
+setup_canvas()
+
+# Set up canvas
+canvas = document["canvas"]
+ctx = canvas.getContext("2d")
+
+# Set origin (31, 13)
+origin_x, origin_y = 15.5, 6.5
+ctx.font = "6px Arial"  # 缩小字体大小
+ctx.fillStyle = "red"
+ctx.fillText("(31, 13)", origin_x + 5, origin_y - 4)  # 在红点的右上方标出坐标
+
+# Draw X
+ctx.beginPath()
+ctx.moveTo(origin_x, origin_y)
+ctx.lineTo(90, origin_y)
+ctx.moveTo(130, origin_y)
+ctx.lineTo(210, origin_y)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(50, 45)
+ctx.lineTo(170, 45)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(origin_x, 75)
+ctx.lineTo(90, 75)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(50, 105)
+ctx.lineTo(170, 105)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(90, 135)
+ctx.lineTo(130, 135)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(origin_x, 165)
+ctx.lineTo(90, 165)
+ctx.moveTo(130, 165)
+ctx.lineTo(210, 165)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+# Draw Y
+ctx.beginPath()
+ctx.moveTo(origin_x, origin_y)
+ctx.lineTo(origin_x, 165)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(50, 105)
+ctx.lineTo(50, 135)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(90, 45)
+ctx.lineTo(90, 75)
+ctx.moveTo(90, 135)
+ctx.lineTo(90, 165)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(130, 75)
+ctx.lineTo(130, 105)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(170, 45)
+ctx.lineTo(170, 75)
+ctx.moveTo(170, 105)
+ctx.lineTo(170, 165)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+ctx.beginPath()
+ctx.moveTo(210, origin_y)
+ctx.lineTo(210, 165)
+ctx.strokeStyle = "blue"
+ctx.lineWidth = 0.6
+ctx.stroke()
+
+# Draw Path
+ctx.beginPath()
+ctx.moveTo(110, origin_y)
+ctx.lineTo(110, 30)
+ctx.lineTo(190, 30)
+ctx.lineTo(190, 90)
+ctx.lineTo(150, 90)
+ctx.lineTo(150, 65)
+ctx.lineTo(110, 65)
+ctx.lineTo(110, 90)
+ctx.lineTo(30, 90)
+ctx.lineTo(30, 160)
+ctx.lineTo(70, 160)
+ctx.lineTo(70, 120)
+ctx.lineTo(150, 120)
+ctx.lineTo(150, 160)
+ctx.lineTo(110, 160)
+ctx.lineTo(110, 165)
+ctx.strokeStyle = "red"
+ctx.lineWidth = 0.6
+ctx.stroke()
+</script><h1>Final Report</h1>
 <p>期末口頭與書面專題報告 (20%)</p>
 <p>期末口頭專題報告影片:</p>
 <p style="padding-left: 30px;">......</p>
